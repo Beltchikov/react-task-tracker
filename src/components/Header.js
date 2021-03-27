@@ -4,7 +4,7 @@ import Button from './Button'
 const Header = ({ title }) => {
     
     const onClick = () => {
-        console.log(Object)
+        console.log('Click')
     };
     
     return (
