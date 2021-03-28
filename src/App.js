@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import Addtask from './components/AddTask'
 import { useState } from 'react'
 
 function App() {
@@ -25,6 +26,10 @@ function App() {
     }
   ])
 
+  const addTask = (task) => {
+    console.log(task)
+  }
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id))
   }
@@ -39,6 +44,7 @@ function App() {
     <div className="container">
       <a href='https://www.youtube.com/watch?v=w7ejDZ8SWv8'>https://www.youtube.com/watch?v=w7ejDZ8SWv8</a>
       <Header />
+      <Addtask onAdd={addTask} />
       {tasks.length > 0
         ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
         : 'No Tasks to Show'}
