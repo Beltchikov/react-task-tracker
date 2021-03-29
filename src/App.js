@@ -7,26 +7,7 @@ function App() {
 
   const [showAddTasks, setShowAddTasks] = useState(false)
   
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: 'Doctor Appointment',
-      day: '05.02 02:30',
-      reminder: true
-    },
-    {
-      id: 2,
-      text: 'Meeting an School',
-      day: '06.02 01:30',
-      reminder: true
-    },
-    {
-      id: 3,
-      text: 'Food Shopping',
-      day: '07.02 02:30',
-      reminder: true
-    }
-  ])
+  const [tasks, setTasks] = useState([])
 
   const addTask = (task) => {
     const id = Math.floor(Math.random()*10000 +1)

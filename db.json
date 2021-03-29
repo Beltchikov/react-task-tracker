@@ -1,19 +1,22 @@
 {
-  "posts": [
+  "tasks": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "text": "Doctor Appointment",
+      "day": "05.02 02:30",
+      "reminder": true
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "text": "Meeting an School",
+      "day": "06.02 01:30",
+      "reminder": true
+    },
+    {
+      "id": 3,
+      "text": "Food Shopping",
+      "day": "07.02 02:30",
+      "reminder": true
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+   ]
 }
