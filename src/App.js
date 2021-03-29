@@ -47,7 +47,9 @@ function App() {
   return (
     <div className="container">
       <a href='https://www.youtube.com/watch?v=w7ejDZ8SWv8'>https://www.youtube.com/watch?v=w7ejDZ8SWv8</a>
-      <Header onAdd={() => setShowAddTasks(!showAddTasks)} />
+      <Header 
+        onAdd={() => setShowAddTasks(!showAddTasks)} 
+        showAdd = {showAddTasks}/>
       {showAddTasks && <Addtask onAdd={addTask} />}
       {tasks.length > 0
         ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
