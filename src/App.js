@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 function App() {
 
   const [showAddTasks, setShowAddTasks] = useState(false)
-  
+
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
@@ -18,40 +18,50 @@ function App() {
     getTasks();
   }, [])
 
-  const fetchTasks = async () =>{
+  const fetchTasks = async () => {
     const res = await fetch('http://localhost:5000/tasks')
     const data = await res.json();
     return data;
   }
 
-  const addTask = (task) => {
-    const id = Math.floor(Math.random()*10000 +1)
-    const newTask = {id, ...task}
-    setTasks([...tasks, newTask])
+  const addTask = async (task) => {
+    const res = await fetch(
+      'http://localhost:5000/tasks',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(task)
+      }
+    )
+
+    const data = await res.json()
+    setTasks([...tasks, data])
   }
 
   const deleteTask = async (id) => {
     await fetch(`http://localhost:5000/tasks/${id}`,
-    {method: 'DELETE'})
+      { method: 'DELETE' })
 
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
   const toggleReminder = (id) => {
     setTasks(tasks.map((task) => task.id === id
-    ? {...task, reminder: !task.reminder}
-    : task))
+      ? { ...task, reminder: !task.reminder }
+      : task))
   }
 
   return (
     <div className="container">
       <a href='https://www.youtube.com/watch?v=w7ejDZ8SWv8'>https://www.youtube.com/watch?v=w7ejDZ8SWv8</a>
-      <Header 
-        onAdd={() => setShowAddTasks(!showAddTasks)} 
-        showAdd = {showAddTasks}/>
+      <Header
+        onAdd={() => setShowAddTasks(!showAddTasks)}
+        showAdd={showAddTasks} />
       {showAddTasks && <Addtask onAdd={addTask} />}
       {tasks.length > 0
-        ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+        ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
         : 'No Tasks to Show'}
 
     </div>
